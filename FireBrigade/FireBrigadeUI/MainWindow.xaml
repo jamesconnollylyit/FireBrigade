@@ -42,7 +42,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button Name="btnClose" Content="Close" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to exit the application"/>
-            <Button Name="btnOK" Content="OK" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to login with your credentials"/>
+            <Button Name="btnOK" Content="OK" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to login with your credentials" Click="btnOK_Click"/>
         </StackPanel>
       
         <Image 

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FireBrigadeUI"
         mc:Ignorable="d"
         WindowState="Maximized"
-        WindowStyle="ToolWindow"
+        WindowStyle="none"
+        Loaded="Window_Loaded"
         Title="Dashboard" Height="450" Width="800">
     <Grid>
         <Grid.Background>
@@ -16,22 +17,45 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,10">
-            <TextBox Name="tbxSearchText" Height="26" Width="100" Margin="10,0" />
-            <Button Name="btnSearch" Height="26" Width="100" Content="Search" Margin="10,0" />
-            <Button Name="btnReset" Height="26" Width="100" Content="Reset" Margin="10,0" />
-        </StackPanel>
-
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,10">
-            <Button Name="btnAdmin" Height="26" Width="100" Content="Admin" Margin="10,0" />
-            <Button Name="btnBuilding" Height="26" Width="100" Content="Building" Margin="10,0" />
-            <Button Name="btnExit" Height="26" Width="100" Content="Exit" Margin="10,0" />
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Menu Name="mnuMainMenu" HorizontalAlignment="Stretch">
+                <MenuItem Header="_Search" Margin="10,0">
+                    <MenuItem Header="search for...">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Name="tbxSearchText" Width="150"/>
+                            <Button Name="btnSearch" Content="Search" Width="50" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="_Reset" />
+                </MenuItem>
+                <MenuItem Name="mnuAdminMenu" Header="_Admin" Margin="10,0" Visibility="Collapsed">
+                    
+                </MenuItem>
+                <MenuItem Name="mnuBuildingMenu" Header="Buildin_g" Margin="10,0" Visibility="Collapsed">
+                    
+                </MenuItem>
+                <MenuItem Name="mnuToolsMenu" Header="_Tools" Margin="10,0" Visibility="Collapsed">
+                    <MenuItem Header="_Manage users">
+                        <MenuItem.Icon>
+                            <Image Source="images/manageuser.png" Width="20" Height="20"></Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Name="mnuShowGroups" 
+                              Header="_Show groups" 
+                              IsCheckable="True" 
+                              IsChecked="False" 
+                              Checked="mnuShowGroups_Checked"/>
+                </MenuItem>
+                <MenuItem Header="A_pplication" Margin="10,0">
+                    <MenuItem Name="mnuExit" Header="_Exit" Click="mnuExit_Click"/>
+                </MenuItem>
+            </Menu>
         </StackPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,10,5,0">
@@ -41,7 +65,7 @@
                                       Opacity=".50"
                                       ShadowDepth="4"/>
                 </Border.Effect>
-                <Frame Name="frmMain"/>
+                <Frame Name="frmMain" NavigationUIVisibility="Hidden"/>
             </Border>
         </DockPanel>
     </Grid>

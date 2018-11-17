@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using DBLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,34 @@ namespace FireBrigadeUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        FireDBEntities db = new FireDBEntities("metadata=res://*/FireBrigadeModel.csdl|res://*/FireBrigadeModel.ssdl|res://*/FireBrigadeModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.8.105;initial catalog=FireDB;persist security info=True;user id=fireuser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            string currentUser = tbxUsername.Text;
+            string currentPassword = tbxPassword.Password;
+            foreach (var user in db.Users)
+            {
+                if (user.Username == currentUser && user.Password == currentPassword)
+                {
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.user = user;
+                    dashboard.ShowDialog();
+                    this.Hide();
+                }
+                else
+                {
+                    lblErrorMessage.Content = "Please check your username and password";
+                }
+                
+            }
+
         }
     }
 }
