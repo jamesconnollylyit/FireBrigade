@@ -35,7 +35,9 @@
                     <MenuItem Header="_Reset" />
                 </MenuItem>
                 <MenuItem Name="mnuAdminMenu" Header="_Admin" Margin="10,0" Visibility="Collapsed">
-                    
+                    <MenuItem Name="mnuManageUsers" Header="_Manage users" Click="mnuManageUsers_Click">
+                        
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Name="mnuBuildingMenu" Header="Buildin_g" Margin="10,0" Visibility="Collapsed">
                     
