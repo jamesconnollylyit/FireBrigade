@@ -24,10 +24,10 @@ namespace FireBrigadeUI
         public Dashboard()
         {
             InitializeComponent();
-            
+
         }
-        
-       
+
+
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
             Admin admin = new Admin();
@@ -48,6 +48,7 @@ namespace FireBrigadeUI
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
         }
 
         private void CheckUserAccess(User user)
@@ -68,6 +69,13 @@ namespace FireBrigadeUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CheckUserAccess(user);
+        }
+
+        private void mnuManageUsers_Click(object sender, RoutedEventArgs e)
+        {
+            Admin admin = new Admin();
+            frmMain.Navigate(admin);
+
         }
     }
 }
