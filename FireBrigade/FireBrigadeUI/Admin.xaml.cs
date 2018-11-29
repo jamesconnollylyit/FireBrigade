@@ -23,7 +23,7 @@ namespace FireBrigadeUI
 
     public partial class Admin : Page
     {
-        FireDBEntities db = new FireDBEntities("metadata=res://*/FireBrigadeModel.csdl|res://*/FireBrigadeModel.ssdl|res://*/FireBrigadeModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.8.105;initial catalog=FireDB;persist security info=True;user id=fireuser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        FireDBEntities db = new FireDBEntities("metadata=res://*/FireBrigadeModel.csdl|res://*/FireBrigadeModel.ssdl|res://*/FireBrigadeModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.8.120;initial catalog=FireDB;persist security info=True;user id=fireuser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
         List<User> users = new List<User>();
         List<Log> logs = new List<Log>();
@@ -152,15 +152,7 @@ namespace FireBrigadeUI
 
         }
 
-        /// <summary>
-        /// Saves user information to the SQL database.
-        /// </summary>
-        /// <param name="user">
-        /// represents a user record to save to the database.
-        /// </param>
-        /// <returns>
-        /// An integer to indicate save success.
-        /// </returns>
+       
         public int SaveUser(User user)
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
