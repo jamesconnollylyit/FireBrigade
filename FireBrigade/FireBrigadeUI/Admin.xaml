@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FireBrigadeUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="Admin">
 
     <Grid>
@@ -15,31 +16,34 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <TabControl Height="400" FontStretch="SemiExpanded" FontStyle="Italic">
+            <TabControl Height="400" FontStretch="SemiExpanded">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
                         <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="Background" Value="Transparent"/>
+
                         <Setter Property="FontFamily" Value="Calibri"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                         <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Foreground" Value="Black" />
+
                     </Style>
                 </TabControl.Resources>
-                
+
                 <TabItem Header="Users">
                     <Grid>
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
 
-                        <ListView Name="lstUserList" Grid.Row="0">
+                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="lstUserList_SelectionChanged">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Username" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Username}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -47,7 +51,7 @@
                                     <GridViewColumn Header="Password" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Password}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -55,7 +59,7 @@
                                     <GridViewColumn Header="Surname" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Surname}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -63,7 +67,7 @@
                                     <GridViewColumn Header="Forename" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Forename}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -71,14 +75,14 @@
                                     <GridViewColumn Header="Access level" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Accesslevel}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
                                 </GridView>
-                                
-                                
+
+
                             </ListView.View>
 
                             <ListView.ContextMenu>
@@ -89,67 +93,112 @@
                                                 <Image Width="20" Height="20" Source="Images/add.png" Stretch="Uniform"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
-                                        <MenuItem Header="Modify selected user" Name="submnuModifySelectedUser" IsEnabled="False">
+                                        <MenuItem Header="Modify selected user" Name="submnuModifySelectedUser" IsEnabled="False" Click="submnuModifySelectedUser_Click">
                                             <MenuItem.Icon>
                                                 <Image Width="20" Height="20" Source="Images/edit.png" Stretch="Uniform"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
-                                        <MenuItem Header="Delete selected user" Name="submnuDeleteSelectedUser" IsEnabled="False">
+                                        <MenuItem Header="Delete selected user" Name="submnuDeleteSelectedUser" IsEnabled="False" Click="submnuDeleteSelectedUser_Click">
                                             <MenuItem.Icon>
                                                 <Image Width="20" Height="20" Source="Images/delete.png" Stretch="Uniform"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                     </ContextMenu.Items>
-                                    
+
                                 </ContextMenu>
                             </ListView.ContextMenu>
-                            
+
                         </ListView>
 
-                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
+                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Collapsed">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30*"/>
-                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="7*"/>
                                 </Grid.ColumnDefinitions>
-
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="16*"/>
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" Grid.Column="0" Content="Username"/>
-                                <Label Grid.Row="1" Grid.Column="0" Content="Password"/>
-                                <Label Grid.Row="2" Grid.Column="0" Content="Surname"/>
-                                <Label Grid.Row="3" Grid.Column="0" Content="Forename"/>
-                                <Label Grid.Row="4" Grid.Column="0" Content="Access level"/>
+                                <!--Row 0-->
+                                <Label Grid.Row="0" Grid.Column="0" Content="Forename"/>
+                                <TextBox Name="tbxUserForename" Grid.Row="0" Grid.Column="1"/>
 
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUsername"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxPassword"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxSurname"/>
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxForename"/>
-                                <ComboBox Grid.Row="4" Grid.Column="1" Width="150">
+                                <!--Row 1-->
+                                <Label Grid.Row="1" Grid.Column="0" Content="Surname"/>
+                                <TextBox Name="tbxUserSurname" Grid.Row="1" Grid.Column="1"/>
+
+                                <!--Row 2-->
+                                <Label Grid.Row="2" Grid.Column="0" Content="Username"/>
+                                <TextBox Name="tbxUsername" Grid.Row="2" Grid.Column="1"/>
+
+                                <!--Row 3-->
+                                <Label Grid.Row="3" Grid.Column="0" Content="Password"/>
+                                <TextBox Name="tbxUserPassword" Grid.Row="3" Grid.Column="1"/>
+
+                                <!--Row 4-->
+                                <Label Grid.Row="4" Grid.Column="0" Content="Access level"/>
+                                <ComboBox Name="cboAccessLevel" Grid.Row="4" Grid.Column="1">
+                                    <ComboBoxItem Content="Please select"/>
                                     <ComboBoxItem Content="Fireman"/>
                                     <ComboBoxItem Content="Administrator"/>
                                 </ComboBox>
-                                <Button Grid.Row="5" Grid.Column="1" Name="btnUpdate" Content="Update" Width="150" Height="26" HorizontalAlignment="Right" Click="btnUpdate_Click"></Button>
+
+                                <!--Row 5-->
+                                <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnCancel" Width="100" Content="Cancel" Margin="10,0"/>
+                                    <Button Name="btnOK" Width="100" Content="OK" Margin="10,0" Background="LightGreen" Click="btnOK_Click"/>
+                                </StackPanel>
+
+
                             </Grid>
                         </StackPanel>
 
                     </Grid>
-                    
                 </TabItem>
 
                 <TabItem Header="Logs">
-                    
+                    <Grid>
+
+                        <ListView Name="lstLogList" Grid.Row="0" Grid.ColumnSpan="2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Category" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Category}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Description" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Description}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Date" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Date}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
                 </TabItem>
-                
+
             </TabControl>
-            
+
         </StackPanel>
     </Grid>
 </Page>
