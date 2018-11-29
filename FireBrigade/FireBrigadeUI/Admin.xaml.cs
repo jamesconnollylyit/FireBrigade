@@ -59,10 +59,56 @@ namespace FireBrigadeUI
         {
             stkUserPanel.Visibility = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Checks if the user data entered into each
+        /// input box is within expected range
+        /// </summary>
+        /// <returns>
+        /// Returns a boolean value to indicate validation success
+        /// </returns>
+        private bool ValidateInput()
+        {
+            bool validated = true;
+
+            if (tbxUserForename.Text.Length ==0 || tbxUserForename.Text.Length > 30)
+            {
+                validated = false;
+            }
+
+            if (tbxUserSurname.Text.Length ==0 || tbxUserForename.Text.Length > 30)
+            {
+                validated = false;
+            }
+
+            if (tbxUsername.Text.Length ==0 || tbxUsername.Text.Length > 30)
+            {
+                validated = false;
+            }
+
+            if (tbxUserPassword.Text.Length == 0 || tbxUserPassword.Text.Length > 30)
+            {
+                validated = false;
+            }
+          
+            //Check to see if an item greater than 0 and less than 2 has been selected.
+            // Not checking for <0 as the first choice in the combobox is the message
+            // to "please select" which is in position 0 index value
+            if (cboAccessLevel.SelectedIndex <1 || cboAccessLevel.SelectedIndex >2) 
+            {
+                validated = false;
+            }
+            return validated;
+        }
         
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (dbOperation == DBOperation.Add)
+            bool dataValidated = ValidateInput();
+            if (!dataValidated)
+            {
+                MessageBox.Show("Error with your data. Please check and try again.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            if (dbOperation == DBOperation.Add && dataValidated)
             {
                 User user = new User();
                 user.Forename = tbxUserForename.Text.Trim();
@@ -84,7 +130,7 @@ namespace FireBrigadeUI
                     MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            if (dbOperation == DBOperation.Modify)
+            if (dbOperation == DBOperation.Modify && dataValidated)
             {
                 foreach (var user in db.Users.Where(t => t.UserId == selectedUser.UserId))
                 {
