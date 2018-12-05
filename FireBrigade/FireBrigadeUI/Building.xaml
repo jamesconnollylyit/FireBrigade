@@ -1,0 +1,312 @@
+﻿<UserControl x:Class="FireBrigadeUI.Building"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FireBrigadeUI"
+             mc:Ignorable="d"    
+             Loaded="UserControl_Loaded"
+             d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+            <TabControl MinHeight="400" Name="tabBuilding">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontFamily" Value="Calibri"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Foreground" Value="Black" />
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem Header="Building">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="50*"/>
+                        </Grid.RowDefinitions>
+
+                        <ListView Name="lstBuildingsList" Grid.Row="0" SelectionChanged="lstBuildingsList_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Building No" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding BuildingNo}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Building Name" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding BuildingName}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Town" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding BuildingTown}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Contact name" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Contact.FullName}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Building Type" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Type.TypeName}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Area" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Area.LocationTownCounty}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu Name="mnuUserListOverview" IsEnabled="True">
+                                    <ContextMenu.Items>
+                                        <MenuItem Header="Add new building" Name="submnuAddNewBuilding" IsEnabled="True" Click="submnuAddNewBuilding_Click">
+                                            <MenuItem.Icon>
+                                                <Image Width="20" Height="20" Source="Images/add.png" Stretch="Uniform"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Modify selected building" Name="submnuModifySelectedBuilding" IsEnabled="False" Click="submnuModifySelectedBuilding_Click">
+                                            <MenuItem.Icon>
+                                                <Image Width="20" Height="20" Source="Images/edit.png" Stretch="Uniform"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Delete selected building" Name="submnuDeleteSelectedBuilding" IsEnabled="False" Click="submnuDeleteSelectedBuilding_Click">
+                                            <MenuItem.Icon>
+                                                <Image Width="20" Height="20" Source="Images/delete.png" Stretch="Uniform"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+
+                        </ListView>
+
+                        <StackPanel Name="stkBuildingPanel" Visibility="Collapsed" Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                </Grid.RowDefinitions>
+
+                                <!--Row 0-->
+                                <Label Grid.Row="0" Content="Please enter building details" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="16"/>
+
+                                <!--Row 1-->
+                                <Label Grid.Row="1" Grid.Column="0" Content="Building name"/>
+                                <TextBox Name="tbxBuildingName" Grid.Row="1" Grid.Column="1" TabIndex="0"/>
+
+                                <!--Row 2-->
+                                <Label Grid.Row="2" Grid.Column="0" Content="Building No"/>
+                                <TextBox Name="tbxBuildingNo" Grid.Row="2" Grid.Column="1" TabIndex="1"/>
+
+                                <!--Row 3-->
+                                <Label Grid.Row="3" Grid.Column="0" Content="Town"/>
+                                <TextBox Name="tbxTown" Grid.Row="3" Grid.Column="1" TabIndex="3"/>
+
+                                <!--Row 4-->
+                                <Label Grid.Row="4" Grid.Column="0" Content="City"/>
+                                <TextBox Name="tbxCity" Grid.Row="4" Grid.Column="1" TabIndex="4"/>
+
+                                <!--Row 5-->
+                                <Label Grid.Row="5" Grid.Column="0" Content="Postcode"/>
+                                <TextBox Name="tbxPostcode" Grid.Row="5" Grid.Column="1" TabIndex="5"/>
+
+                                <!--Row 6-->
+                                <Label Grid.Row="6" Grid.Column="0" Content="Building type"/>
+                                <ComboBox Name="cboBuildingType" Grid.Row="6" Grid.Column="1" Width="200" HorizontalAlignment="Left" SelectionChanged="cboBuildingType_SelectionChanged">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding TypeName}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <!--Row 7-->
+                                <Label Grid.Row="7" Grid.Column="0" Content="Building area"/>
+                                <ComboBox Name="cboBuildingArea" Grid.Row="7" Grid.Column="1" Width="200" HorizontalAlignment="Left" SelectionChanged="cboBuildingArea_SelectionChanged">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding LocationTownCounty}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <!--Row 8-->
+                                <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnCancel" Width="100" Content="Cancel" Margin="10,0" TabIndex="7" Click="btnCancel_Click"/>
+                                    <Button Name="btnOK" Width="100" Content="OK" Margin="10,0" Background="LightGreen" Click="btnOK_Click" TabIndex="6"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Building Contact" Name="tabBuildingContact" IsEnabled="False" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Content="Please enter contact details for this building" HorizontalAlignment="Center" FontSize="16"/>
+
+                        <StackPanel Name="stkBuildingContact" Visibility="Visible" Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                    <RowDefinition Height="1*"  />
+                                </Grid.RowDefinitions>
+
+                                <!--Row 0-->
+                                <Label Grid.Row="0" Grid.Column="0" Content="Contact first name"/>
+                                <TextBox Name="tbxContactFirstName" Grid.Row="0" Grid.Column="1" TabIndex="0"/>
+
+                                <!--Row 1-->
+                                <Label Grid.Row="1" Grid.Column="0" Content="Contact Surname"/>
+                                <TextBox Name="tbxContactSurname" Grid.Row="1" Grid.Column="1" TabIndex="1"/>
+
+                                <!--Row 2-->
+                                <Label Grid.Row="2" Grid.Column="0" Content="House No"/>
+                                <TextBox Name="tbxContactHouseNo" Grid.Row="2" Grid.Column="1" TabIndex="2"/>
+
+                                <!--Row 3-->
+                                <Label Grid.Row="3" Grid.Column="0" Content="Street"/>
+                                <TextBox Name="tbxContactStreet" Grid.Row="3" Grid.Column="1" TabIndex="3"/>
+
+                                <!--Row 4-->
+                                <Label Grid.Row="4" Grid.Column="0" Content="Town"/>
+                                <TextBox Name="tbxContactTown" Grid.Row="4" Grid.Column="1" TabIndex="4"/>
+
+                                <!--Row 5-->
+                                <Label Grid.Row="5" Grid.Column="0" Content="Phone Number inc code"/>
+                                <TextBox Name="tbxContactPhoneNo" Grid.Row="5" Grid.Column="1" TabIndex="5"/>
+
+                               
+                            </Grid>
+                        </StackPanel>
+
+
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Building documents" Name="tabBuildingDocument" IsEnabled="False">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontFamily" Value="Calibri" />
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="Calibri" />
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="Calibri" />
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="80*"/>
+                        </Grid.RowDefinitions>
+
+                        
+
+                        <Label Content="Building plan" HorizontalAlignment="Center" FontSize="16" Grid.Row="0"></Label>
+                        
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20*"/>
+                                    <RowDefinition Height="20*"/>
+                                    <RowDefinition Height="60*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="33*"/>
+                                    <ColumnDefinition Width="33*"/>
+                                    <ColumnDefinition Width="33*"/>
+                                </Grid.ColumnDefinitions>
+                                                                
+                                <Label Content="Document Path " Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Name="tbxDocumentPath"  Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
+                                <Button Name="btnDocPathBrowse" HorizontalAlignment="Left" Content="Browse" Width="110" Grid.Row="0" Grid.Column="2" Margin="0,10" Click="btnDocPathBrowse_Click"/>
+                                
+                                <Label Content="Document description " Grid.Row="1" Grid.Column="0"/>
+                                <TextBox Name="tbxDocumentDesc" Grid.Row="1" Grid.Column="1" IsReadOnly="True"/>
+                                <Button Name="btnDocDescChange" Content="Change" Width="110" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2" Margin="0,10" Click="btnDocDescChange_Click"/>
+                                
+                                <StackPanel Orientation="Horizontal" Name="stkChangeDocDescription" Visibility="Visible" Grid.Row="2" Grid.Column="1" Height="26">
+                                        <TextBox Name="tbxDocDescChangedText" Width="200"/>
+                                    <Button Name="btnDocDescUpdateText" Content="Update" Click="btnDocDescUpdateText_Click" />
+                                    </StackPanel>
+                              
+
+                            </Grid>
+                           
+                        </StackPanel>
+                       
+
+
+
+                        <StackPanel Grid.Row="1"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</UserControl>

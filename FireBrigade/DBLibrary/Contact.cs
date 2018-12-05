@@ -27,7 +27,15 @@ namespace DBLibrary
         public string Street { get; set; }
         public string Town { get; set; }
         public string PhoneNo { get; set; }
-    
+
+        public string FullName
+        {
+            get
+            {
+                return $"{ FName } { SName }";
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Building> Buildings { get; set; }
     }

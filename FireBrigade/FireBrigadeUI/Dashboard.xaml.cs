@@ -77,5 +77,11 @@ namespace FireBrigadeUI
             frmMain.Navigate(admin);
 
         }
+
+        private void mnuManageBuildings_Click(object sender, RoutedEventArgs e)
+        {
+            Building building = new Building();
+            frmMain.Navigate(building);
+        }
     }
 }

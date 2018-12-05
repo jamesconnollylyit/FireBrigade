@@ -35,14 +35,18 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,20">
-            <TextBox Name="tbxUsername" Grid.Row="1" Grid.Column="1" Height="26" Width="200" Margin="0,10" TabIndex="0" ToolTip="Please enter your username in this textbox"/>
+            <StackPanel >
+                <TextBox Name="tbxUsername" Grid.Row="1" Grid.Column="1" Height="26" Width="200" TabIndex="0" ToolTip="Please enter your username in this textbox"/>
+                
+
+            </StackPanel>
             <PasswordBox Name="tbxPassword" Grid.Row="2" Grid.Column="1" Height="26" Width="200" Margin="0,10" TabIndex="1" ToolTip="Please enter your password in this textbox"/>
             <Label Name="lblErrorMessage" Content=""/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
-            <Button Name="btnClose" Content="Close" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to exit the application"/>
-            <Button Name="btnOK" Content="OK" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to login with your credentials" Click="btnOK_Click"/>
+            <Button Name="btnClose" Content="Close" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to exit the application" Click="btnClose_Click"/>
+            <Button Name="btnOK" Content="OK" Height="26" Width="130" Margin="10,1" ToolTip="Click this button to login with your credentials" TabIndex="2" Click="btnOK_Click"/>
         </StackPanel>
       
         <Image 
