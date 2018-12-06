@@ -83,5 +83,11 @@ namespace FireBrigadeUI
             Building building = new Building();
             frmMain.Navigate(building);
         }
+
+        private void mnuAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            Analysis analysis = new Analysis();
+            frmMain.Navigate(analysis);
+        }
     }
 }

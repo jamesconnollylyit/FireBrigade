@@ -83,7 +83,6 @@
     <Compile Include="Log.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Logic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Type.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>
