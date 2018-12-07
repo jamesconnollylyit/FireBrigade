@@ -43,7 +43,7 @@
 
                 </MenuItem>
                 <MenuItem Name="mnuToolsMenu" Header="_Tools" Margin="10,0" Visibility="Collapsed">
-                    <MenuItem Header="_Manage users">
+                    <MenuItem Name="mnuAnalysis" Header="_Analysis" Click="mnuAnalysis_Click">
                         <MenuItem.Icon>
                             <Image Source="images/manageuser.png" Width="20" Height="20"></Image>
                         </MenuItem.Icon>

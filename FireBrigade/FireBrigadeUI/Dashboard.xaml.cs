@@ -77,5 +77,16 @@ namespace FireBrigadeUI
             frmMain.Navigate(admin);
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mnuAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            Analysis analysis = new Analysis();
+            frmMain.Navigate(analysis);
+        }
     }
 }
