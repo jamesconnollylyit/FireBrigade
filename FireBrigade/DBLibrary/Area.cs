@@ -25,7 +25,15 @@ namespace DBLibrary
         public string Location { get; set; }
         public string Town { get; set; }
         public string County { get; set; }
-    
+
+        public string LocationTownCounty
+        {
+            get
+            {
+                return $"{ Location } { Town } { County }";
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Building> Buildings { get; set; }
     }

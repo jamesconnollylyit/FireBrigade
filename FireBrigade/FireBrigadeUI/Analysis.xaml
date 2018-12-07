@@ -9,23 +9,23 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="45*"/>
+            
         </Grid.RowDefinitions>
 
-        <!--Row 0-->
-        <ScrollViewer Grid.Row="0" Margin="10">
-            <TextBlock Name="tbkAnalysisOutput" TextWrapping="Wrap" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <Label Grid.Row="0" Content="Please choose options for your analysis" HorizontalAlignment="Center" FontSize="16"/>
+        <ScrollViewer Grid.Row="1" Margin="10">
+            <TextBlock Name="tbkAnalysisOutput" TextWrapping="Wrap" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </ScrollViewer>
-
-        <!--Row 1-->
+        
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -33,38 +33,27 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Row 0-->
-                <Label Grid.Row="0" Content="Please choose an analysis type" HorizontalAlignment="Center" FontSize="16"/>
+                <Label Grid.Row="0" Grid.RowSpan="1" Content="Please choose an analysis type" HorizontalAlignment="Center" FontSize="16"/>
                 <Label Grid.Row="0" Grid.Column="1" Content="Please choose a database table" HorizontalAlignment="Center" FontSize="16"/>
 
                 <!--Row 1-->
                 <ComboBox Name="cboAnalysisType" Margin="0,10" Grid.Row="1" Grid.Column="0" Width="150" Height="26" SelectedIndex="0" SelectionChanged="cboAnalysisType_SelectionChanged">
-                    <ComboBoxItem Content="Please select" />
-                    <ComboBoxItem Content="Summary" />
-                    <ComboBoxItem Content="Count" />
-                    <ComboBoxItem Content="Statistics" />
+                    <ComboBoxItem Content="Please select"/>
+                    <ComboBoxItem Content="Summary"/>
+                    <ComboBoxItem Content="Count"/>
+                    <ComboBoxItem Content="Statistics"/>
                 </ComboBox>
-
                 <ComboBox Name="cboChooseTable" Margin="0,10" Grid.Row="1" Grid.Column="1" Width="150" Height="26" SelectedIndex="0" SelectionChanged="cboChooseTable_SelectionChanged">
-                    <ComboBoxItem Content="Please select" />
-                    <ComboBoxItem Content="Building" />
-                    <ComboBoxItem Content="User" />
-                    <ComboBoxItem Content="Log" />
-                    <ComboBoxItem Content="Contact" />
+                    <ComboBoxItem Content="Please select"/>
+                    <ComboBoxItem Content="Building"/>
+                    <ComboBoxItem Content="User"/>
+                    <ComboBoxItem Content="Log"/>
+                    <ComboBoxItem Content="Contact"/>
                 </ComboBox>
 
                 <!--Row 2-->
-                <Button Name="btnAnalyse" Grid.Row="2" Grid.Column="1" Height="26" Width="150" Content="Analyse" Background="LightGreen" Click="btnAnalyse_Click" />
-                <Label Content="Start date" HorizontalAlignment="Left" Margin="68,26,0,-8" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.763,1" Width="98"/>
-
-
-
-
+                <Button Name="btnAnalyse" Grid.Row="2" Margin="30" Grid.Column="1" Height="26" Width="150" HorizontalAlignment="Center" Content="Analyse" Background="LightGreen" Click="btnAnalyse_Click"/>
             </Grid>
         </StackPanel>
-        <DatePicker Name="dteStartDate" HorizontalAlignment="Left" Margin="63,191,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="End date" HorizontalAlignment="Left" Margin="224,165,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.763,1" Width="98"/>
-
-        <DatePicker HorizontalAlignment="Left" Margin="224,191,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-
     </Grid>
 </UserControl>

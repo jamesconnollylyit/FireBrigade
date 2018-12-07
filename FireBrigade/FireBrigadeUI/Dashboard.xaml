@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Menu Name="mnuMainMenu" HorizontalAlignment="Stretch">
+            <Menu Name="mnuMainMenu" HorizontalAlignment="Stretch" FontSize="14" Background="AliceBlue">
                 <MenuItem Header="_Search" Margin="10,0">
                     <MenuItem Header="search for...">
                         <StackPanel Orientation="Horizontal">
@@ -40,7 +40,9 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Name="mnuBuildingMenu" Header="Buildin_g" Margin="10,0" Visibility="Collapsed">
+                    <MenuItem Name="mnuManageBuildings" Header="_Manage Buildings" Click="mnuManageBuildings_Click">
 
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Name="mnuToolsMenu" Header="_Tools" Margin="10,0" Visibility="Collapsed">
                     <MenuItem Name="mnuAnalysis" Header="_Analysis" Click="mnuAnalysis_Click">
@@ -48,11 +50,6 @@
                             <Image Source="images/manageuser.png" Width="20" Height="20"></Image>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Name="mnuShowGroups" 
-                              Header="_Show groups" 
-                              IsCheckable="True" 
-                              IsChecked="False" 
-                              Checked="mnuShowGroups_Checked"/>
                 </MenuItem>
                 <MenuItem Header="A_pplication" Margin="10,0">
                     <MenuItem Name="mnuExit" Header="_Exit" Click="mnuExit_Click"/>

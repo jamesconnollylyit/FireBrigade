@@ -78,9 +78,10 @@ namespace FireBrigadeUI
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void mnuManageBuildings_Click(object sender, RoutedEventArgs e)
         {
-
+            Building building = new Building();
+            frmMain.Navigate(building);
         }
 
         private void mnuAnalysis_Click(object sender, RoutedEventArgs e)

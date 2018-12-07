@@ -53,6 +53,8 @@ namespace FireBrigadeUI
             {
                 logs.Add(log);
             }
+            cboAccessLevel.SelectedIndex = 0;
+            
         }
 
         private void submnuAddNewUser_Click(object sender, RoutedEventArgs e)
@@ -67,7 +69,7 @@ namespace FireBrigadeUI
         /// <returns>
         /// Returns a boolean value to indicate validation success
         /// </returns>
-        private bool ValidateInput()
+        public bool ValidateInput()
         {
             bool validated = true;
 
@@ -227,5 +229,7 @@ namespace FireBrigadeUI
                 MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+       
     }
 }
