@@ -25,6 +25,7 @@ namespace FireBrigadeUI
     {
         FireDBEntities db = new FireDBEntities("metadata=res://*/FireBrigadeModel.csdl|res://*/FireBrigadeModel.ssdl|res://*/FireBrigadeModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.8.120;initial catalog=FireDB;persist security info=True;user id=fireuser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
+        ProcessLogin login = new ProcessLogin();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,14 +35,32 @@ namespace FireBrigadeUI
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             User validatedUser = new User();
-            bool login = false;
+           
             bool credentialsValidated = false;
             string currentUser = tbxUsername.Text;
             string currentPassword = tbxPassword.Password;
-            credentialsValidated = ValidateUserInput(currentUser, currentPassword);
+            try
+            {
+                credentialsValidated = login.ValidateUserInput(currentUser, currentPassword);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
             if (credentialsValidated)
             {
-                validatedUser = GetUserRecord(currentUser, currentPassword);
+                try
+                {
+                    validatedUser = GetUserRecord(currentUser, currentPassword);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
                 if (validatedUser.UserId >0)
                 {
                     Dashboard dashboard = new Dashboard();
