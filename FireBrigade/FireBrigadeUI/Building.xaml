@@ -103,7 +103,7 @@
 
                         </ListView>
 
-                        <StackPanel Name="stkBuildingPanel" Visibility="Collapsed" Grid.Row="1">
+                        <StackPanel Name="stkBuildingPanel" Visibility="Visible" Grid.Row="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*"/>

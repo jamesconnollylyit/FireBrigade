@@ -53,17 +53,20 @@ namespace FireBrigadeUI
 
         private void CheckUserAccess(User user)
         {
-            if (user.LevelID == 2)
+            if (user.LevelID > 0)
             {
-                mnuBuildingMenu.Visibility = Visibility.Visible;
-            }
+                if (user.LevelID == 2)
+                {
+                    mnuBuildingMenu.Visibility = Visibility.Visible;
+                }
 
-            if (user.LevelID == 3)
-            {
-                mnuAdminMenu.Visibility = Visibility.Visible;
-                mnuBuildingMenu.Visibility = Visibility.Visible;
-                mnuToolsMenu.Visibility = Visibility.Visible;
-            }
+                if (user.LevelID == 3)
+                {
+                    mnuAdminMenu.Visibility = Visibility.Visible;
+                    mnuBuildingMenu.Visibility = Visibility.Visible;
+                    mnuToolsMenu.Visibility = Visibility.Visible;
+                }
+            }      
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

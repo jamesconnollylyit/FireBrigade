@@ -59,6 +59,7 @@
     <Compile Include="Building.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BuildingProcess.cs" />
     <Compile Include="Contact.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>
     </Compile>
@@ -83,6 +84,7 @@
     <Compile Include="Log.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Type.cs">
       <DependentUpon>FireBrigadeModel.tt</DependentUpon>

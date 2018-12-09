@@ -22,6 +22,7 @@ namespace FireBrigadeUI
     public partial class Building : UserControl
     {
         FireDBEntities db = new FireDBEntities("metadata=res://*/FireBrigadeModel.csdl|res://*/FireBrigadeModel.ssdl|res://*/FireBrigadeModel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.8.120;initial catalog=FireDB;persist security info=True;user id=fireuser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        BuildingProcess buildingProcess = new BuildingProcess();
 
         List<Area> areaList = new List<Area>();
         List<DBLibrary.Type> typeList = new List<DBLibrary.Type>();
@@ -52,9 +53,23 @@ namespace FireBrigadeUI
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+            bool dataValidated = buildingProcess.ValidateBuildingInput(
+                tbxBuildingName.Text,
+                tbxBuildingNo.Text,
+                tbxPostcode.Text,
+                cboBuildingType.SelectedIndex,
+                typeList.Count, 
+                cboBuildingArea.SelectedIndex, 
+                areaList.Count, 
+                tbxContactFirstName.Text, 
+                tbxContactSurname.Text, 
+                tbxContactPhoneNo.Text, 
+                tbxContactStreet.Text, 
+                tbxContactTown.Text, 
+                tbxContactPhoneNo.Text, 
+                tbxDocumentDesc.Text, 
+                tbxDocumentPath.Text);
 
-
-            bool dataValidated = ValidateBuildingInput();
             if (!dataValidated)
             {
                 MessageBox.Show("Error with your data. Please check and try again.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -202,7 +217,7 @@ namespace FireBrigadeUI
             buildingList.Clear();
             foreach (var buildingRecord in db.Buildings)
             {
-                buildingList.Add(buildingRecord);
+                buildingProcess.AddBuildingToBuildingList(buildingList, buildingRecord);
             }
             lstBuildingsList.ItemsSource = buildingList;
             lstBuildingsList.Items.Refresh();

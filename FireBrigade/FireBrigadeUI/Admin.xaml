@@ -110,7 +110,7 @@
 
                         </ListView>
 
-                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Visible">
+                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Collapsed">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*"/>
